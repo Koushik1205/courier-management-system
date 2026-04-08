@@ -1,0 +1,5 @@
+@EndUserText.label: 'Service Definition – Courier Tracking'
+define service ZCIT_SHIP_UI_22AM022 {
+  expose ZCIT_SHIP_C_22AM022;
+  expose ZCIT_SHPI_C_22AM022;
+}

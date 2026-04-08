@@ -1,0 +1,81 @@
+@Metadata.layer: #CORE
+@UI: {
+  headerInfo: {
+    typeName: 'Shipment',
+    typeNamePlural: 'Shipments',
+    title: { type: #STANDARD, label: 'Shipment ID', value: 'ShipmentId' }
+  }
+}
+annotate entity ZCIT_SHIP_C_22AM022 with
+{
+  @UI.facet: [
+    {
+      id: 'ShipHeader',
+      purpose: #STANDARD,
+      type: #IDENTIFICATION_REFERENCE,
+      label: 'Shipment Details',
+      position: 10
+    },
+    {
+      id: 'ShipItems',
+      purpose: #STANDARD,
+      type: #LINEITEM_REFERENCE,
+      label: 'Package Items',
+      position: 20,
+      targetElement: '_ShipItem'
+    }
+  ]
+ 
+  @UI: { lineItem: [{position:10,label:'Shipment ID'}],
+         identification: [{position:10,label:'Shipment ID'}],
+         selectionField: [{position:10}] }
+  ShipmentId;
+ 
+  @UI: { lineItem: [{position:20,label:'Customer ID'}],
+         identification: [{position:20,label:'Customer ID'}],
+         selectionField: [{position:20}] }
+  CustomerId;
+ 
+  @UI: { lineItem: [{position:30,label:'Customer Name'}],
+         identification: [{position:30,label:'Customer Name'}] }
+  CustomerName;
+ 
+  @UI: { lineItem: [{position:40,label:'Shipment Date'}],
+         identification: [{position:40,label:'Shipment Date'}] }
+  ShipmentDate;
+ 
+  @UI: { lineItem: [{position:50,label:'Expected Delivery'}],
+         identification: [{position:50,label:'Expected Delivery'}] }
+  ExpectedDelivery;
+ 
+  @UI: { lineItem: [{position:60,label:'Status'}],
+         identification: [{position:60,label:'Status'}],
+         selectionField: [{position:60}] }
+  ShipmentStatus;
+ 
+  @UI: { lineItem: [{position:70,label:'Origin'}],
+         identification: [{position:70,label:'Origin Location'}] }
+  OriginLocation;
+ 
+  @UI: { lineItem: [{position:80,label:'Destination'}],
+         identification: [{position:80,label:'Destination Location'}] }
+  DestinationLocation;
+ 
+  @UI: { lineItem: [{position:90,label:'Carrier'}],
+         identification: [{position:90,label:'Carrier Name'}] }
+  CarrierName;
+ 
+  @UI: { lineItem: [{position:100,label:'Total Cost'}],
+         identification: [{position:100,label:'Total Cost'}] }
+  TotalCost;
+ 
+  @UI: { lineItem: [{position:110,label:'Currency'}],
+         identification: [{position:110,label:'Currency'}] }
+  Currency;
+ 
+  @UI: { identification: [{position:120,label:'Created By'}] }
+  LocalCreatedBy;
+ 
+  @UI: { identification: [{position:130,label:'Created At'}] }
+  LocalCreatedAt;
+}

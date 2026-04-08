@@ -1,0 +1,80 @@
+unmanaged implementation in class ZCIT_BP_SHIP_I_22AM022 unique;
+strict ( 2 );
+with draft;
+
+define behavior for ZCIT_SHIP_I_22AM022 alias ShipHeader
+  implementation in class ZCIT_BP_SHIP_HDR_22AM022 unique
+  draft table ZCITSHIPD22AM022
+  lock master total etag LastChangedAt
+  authorization master ( instance )
+  etag master LastChangedAt
+{
+  create ( authorization : global );
+  update;
+  delete;
+
+  draft action Edit;
+  draft action Resume;
+  draft determine action Prepare;
+  draft action Activate optimized;
+  draft action Discard;
+
+  field ( mandatory : create ) ShipmentId;
+  field ( readonly : update ) ShipmentId;
+  field ( readonly ) LastChangedAt;
+
+  association _ShipItem { create; with draft; }
+
+  mapping for zcit_ship22am022
+  {
+    ShipmentId          = shipmentid;
+    CustomerId          = customerid;
+    CustomerName        = customername;
+    ShipmentDate        = shipmentdate;
+    ExpectedDelivery    = expecteddelivery;
+    ShipmentStatus      = shipmentstatus;
+    OriginLocation      = originlocation;
+    DestinationLocation = destinationlocation;
+    CarrierName         = carriername;
+    TotalCost           = totalcost;
+    Currency            = currency;
+    LocalCreatedBy      = local_created_by;
+    LocalCreatedAt      = local_created_at;
+    LocalLastChangedBy  = local_last_changed_by;
+    LocalLastChangedAt  = local_last_changed_at;
+    LastChangedAt       = last_changed_at;
+  }
+}
+
+define behavior for ZCIT_SHPI_I_22AM022 alias ShipItem
+  implementation in class ZCIT_BP_SHIP_ITM_22AM022 unique
+  draft table ZCITSHPID22AM022
+  lock dependent by _ShipHeader
+  authorization dependent by _ShipHeader
+  etag master LocalLastChangedAt
+{
+  update;
+  delete;
+
+  field ( readonly : update, mandatory : create ) ItemNumber;
+  field ( readonly ) ShipmentId;
+
+  association _ShipHeader { with draft; }
+
+  mapping for zcit_shpi22am022
+  {
+    ShipmentId         = shipmentid;
+    ItemNumber         = itemnumber;
+    PackageDescription = packagedescription;
+    PackageType        = packagetype;
+    Weight             = weight;
+    WeightUnit         = weightunit;
+    Volume             = volume;
+    DimensionUnit      = dimensionunit;
+    TrackingStatus     = trackingstatus;
+    LocalCreatedBy     = local_created_by;
+    LocalCreatedAt     = local_created_at;
+    LocalLastChangedBy = local_last_changed_by;
+    LocalLastChangedAt = local_last_changed_at;
+  }
+}

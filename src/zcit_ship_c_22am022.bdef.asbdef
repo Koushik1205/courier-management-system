@@ -1,0 +1,23 @@
+projection;
+strict ( 2 );
+use draft;
+
+define behavior for ZCIT_SHIP_C_22AM022 alias ShipHeader
+{
+  use create;
+  use update;
+  use delete;
+  use action Edit;
+  use action Activate;
+  use action Discard;
+  use action Prepare;
+  use action Resume;
+  use association _ShipItem { create; with draft; }
+}
+
+define behavior for ZCIT_SHPI_C_22AM022 alias ShipItem
+{
+  use update;
+  use delete;
+  use association _ShipHeader { with draft; }
+}

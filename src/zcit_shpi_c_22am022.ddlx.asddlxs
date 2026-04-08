@@ -1,0 +1,62 @@
+@Metadata.layer: #CORE
+@UI: {
+  headerInfo: {
+    typeName: 'Package Item',
+    typeNamePlural: 'Package Items',
+    title: { type: #STANDARD, label: 'Item No', value: 'ItemNumber' }
+  }
+}
+annotate entity ZCIT_SHPI_C_22AM022 with
+{
+  @UI.facet: [
+    {
+      id: 'ItemDetails',
+      purpose: #STANDARD,
+      type: #IDENTIFICATION_REFERENCE,
+      label: 'Package Item Details',
+      position: 10
+    }
+  ]
+ 
+  @UI: { lineItem: [{position:10,label:'Shipment ID'}],
+         identification: [{position:10,label:'Shipment ID'}] }
+  ShipmentId;
+ 
+  @UI: { lineItem: [{position:20,label:'Item No'}],
+         identification: [{position:20,label:'Item No'}] }
+  ItemNumber;
+ 
+  @UI: { lineItem: [{position:30,label:'Description'}],
+         identification: [{position:30,label:'Package Description'}] }
+  PackageDescription;
+ 
+  @UI: { lineItem: [{position:40,label:'Type'}],
+         identification: [{position:40,label:'Package Type'}] }
+  PackageType;
+ 
+  @UI: { lineItem: [{position:50,label:'Weight'}],
+         identification: [{position:50,label:'Weight'}] }
+  Weight;
+ 
+  @UI: { lineItem: [{position:60,label:'Tracking Status'}],
+         identification: [{position:60,label:'Tracking Status'}] }
+  TrackingStatus;
+ 
+  @UI.hidden: true
+  WeightUnit;
+ 
+  @UI.hidden: true
+  DimensionUnit;
+ 
+  @UI.hidden: true
+  LocalCreatedBy;
+ 
+  @UI.hidden: true
+  LocalCreatedAt;
+ 
+  @UI.hidden: true
+  LocalLastChangedBy;
+ 
+  @UI.hidden: true
+  LocalLastChangedAt;
+}
